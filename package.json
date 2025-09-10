@@ -1,0 +1,16 @@
+{
+	"name": "lang_prog",
+	"version": "1.0.0",
+	"description": "That is a cool project for TSU",
+	"license": "ISC",
+	"author": "Andrew T",
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"compile:sass": "sass scss/main.scss css/style.css -w"
+	},
+	"dependencies": {
+		"live-server": "^1.2.2",
+		"sass": "^1.92.1"
+	}
+}

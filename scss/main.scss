@@ -1,0 +1,56 @@
+/*    IMPORT SCSS     */
+
+@import 'variables';
+
+/*    IMPORT SCSS     */
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 62.5%; /* 1 rem = 10 px */
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+}
+
+.main-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	padding: 30rem 20rem;
+	border: solid $primary-orange 2px;
+
+	input {
+		display: block;
+		font-size: 2rem;
+		border: solid black 2px;
+		padding: 0.4rem;
+		cursor: pointer;
+
+		&:focus + label,
+		&:valid + label {
+			transform: translateY(-6.2rem) translateX(1rem);
+			color: $primary-orange;
+		}
+	}
+
+	label {
+		transition: 0.3s;
+		font-size: 1.8rem;
+		color: grey;
+		position: absolute;
+		transform: translateY(-3rem) translateX(1rem);
+		cursor: inherit;
+	}
+}
+
+//
