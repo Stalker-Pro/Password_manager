@@ -28,6 +28,8 @@ body {
 	translate: -50% -50%;
 	padding: 30rem 20rem;
 	border: solid $primary-orange 2px;
+	// display: flex;
+	// align-items: center;
 
 	input {
 		display: block;
@@ -35,6 +37,7 @@ body {
 		border: solid black 2px;
 		padding: 0.4rem;
 		cursor: pointer;
+		outline: none;
 
 		&:focus + label,
 		&:valid + label {
@@ -50,6 +53,17 @@ body {
 		position: absolute;
 		transform: translateY(-3rem) translateX(1rem);
 		cursor: inherit;
+	}
+
+	.button-container {
+		display: flex;
+		gap: 1rem;
+	}
+
+	[class^='btn'] {
+		border: solid black 2px;
+		padding: 1rem 1rem;
+		font-size: 2rem;
 	}
 }
 

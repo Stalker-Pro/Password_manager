@@ -1,0 +1,205 @@
+///////////////////* basic presset *////////////////////
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	//This defines what 1 rem is 10 px
+	font-size: 62.5%;
+}
+
+body {
+	box-sizing: border-box;
+}
+///////////////////* basic presset *////////////////////
+
+/*    УДАЛЕНИЕ node_modules для PUSH   */
+git rm -r  --cached .\node_modules\
+
+
+/* LIVE SERVER */
+
+НАЧАЛО --> Скачать NodeJS --> переходим в папку через cmd --> пишем npm init (далее проходим базове настройки npm) --> npm install --> npm i sass
+
+/* Пишем npm i live-server -g*/
+/* И тогда можно запускать с консоли*/
+
+
+/* COMPILE JSON*/
+/* npm run "compile:sass" */ 
+/*1) исполнемый пакет, 2) файл что преобразовать, 3)Куда закинуть*/
+
+  /* "scripts": {
+    "compile:sass": "node-sass sass/main.scss styles/style.css -w"
+  } */
+
+/* Для компиляции npm достаточно*/
+
+
+/* ТИПИЧНОЕ ЦЕНТРИРОВАНИЕ (position: relative; у верхнего обычно)
+
+  height:5rem;
+  width:5rem;
+  position:absolute;
+  top:50%;
+  left:50%;
+  translate: -50% -50%;
+
+  
+/// ЦЕНТРИРОВАНИЕ для блока
+			margin: 0 auto; 
+      
+
+/* ЦЕНТРИРОВАНИЕ ПО ГОРИЗОНТАЛИ */
+.row {
+    max-width: 114rem;
+    margin: 0 auto;
+}
+
+/* CLEARFIX */
+@mixin clearFix{ //Чтобы не было коллапса высоты (*height = 0*)
+  &::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/*   ICON - ОТКУДА БРАТЬ https://github.com/linea-io/Linea-Iconset   */
+
+/*ПОМОГАЕТ ОКРАСИТЬ КАРТИНКУ В ЦВЕТ КОТОРЫЙ ТЫ ХОЧЕШЬ*/
+/*Градиент например*/
+    &__icon{
+        display: inline-block;
+        font-size: 6rem;
+        margin-bottom: .5rem;
+        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+        -webkit-background-clip: text; ///важно
+        color: transparent;
+    }
+
+
+/* ЕСЛИ НЕ ИМПОРТИРУЕТСЯ ЧТО_ТО*/
+
+@use '../abstracts/variable' as *; 
+
+/// Если нужно использовать в других проектах VARIABLE 
+/// то в каждом файле его нужно подключить а в MAIN использовать как @use 'base/base';
+
+/* ЕСЛИ НУЖНО ЧТО-ТО ИЗМЕНИТЬ В ДОЧЕРНИХ КЛАССАХ С ОДИНАКОВЫМ НАЗВАНИЕМ*/
+  [class^="col-"]{
+    float: left;
+  }
+
+/* ЕСЛИ НУЖНО ЧТО-ТО ИЗМЕНИТЬ В ДОЧЕРНЕМ КЛАССЕ
+ следущий дочерний элемент (НЕ ВСЕ только ОДИН) */
+
+  & > * {
+    transform: skewX(12deg);
+  }
+
+
+/* ЕСЛИ КАРТИНКА НЕ ПОМЕЩАЕТСЯ В КОНТЕЙНЕР ТО */
+  // облегает всё свободное место (помещается) родительского элемента
+        object-fit: cover; 
+(при этом родительский: relative, а дочерний: absolute)
+
+  // чтобы картинка скрылась (не выходила) за края контейнера
+        overflow: hidden;
+
+
+/*МОЖНО СОВМЕЩАТЬ ГРАДИЕНТ И КАРТИНКУ */
+(например вместо clip-path: ; , делая второй цвет transparent)
+background-image:
+linear-gradient(105deg,rgba($color-white, .9), orangered), url(/img/nat-10.jpg);
+
+
+/* ЧТОБЫ МОЖНО БЫЛО СДЕЛАТЬ ЧТО_ТО ВЫПАДАЮЩЕЕ В INPUT 
+С ОДИНАКОВЫМ НАЧАЛОМ ТИПО form__input и form__label (& - здесь form) */
+	&__input:placeholder-shown + &__label {// stand for 'sibling'	
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-4rem);
+	}
+
+
+/* КАК РАБОТАЕТ LABEL В INPUT 
+(ДВЕ ШТУКИ С ОДИНАКОВЫМ НАЗВАНИЕМ (name) для переключения)
+  НИЖЕ ПОКАЗАН SIMBLING
+*/
+    <div class="form__radio-group">
+      <input type="radio" class="form__radio-input" id="small name="size"">
+      <label for="small" class="form__radio-label">Small tour group</label>
+    </div>
+
+    <div class="form__radio-group">
+      <input type="radio" class="form__radio-input" id="small name="size"">
+      <label for="small" class="form__radio-label">Small tour group</label>
+    </div>
+
+// 1) что произошло ~ 2)Класс содержащий элемент 3) Класс кому будет поручено сделать    
+	&__radio-input:checked ~ &__radio-label &__radio-button::after {
+		opacity: 1;
+	}
+
+///////////////////////////////////////
+/* ФАКТИЧЕСКОЕ УДОБНОЕ ЦЕНТРИРОВАНИЕ */
+///////////////////////////////////////
+.row{
+  max-width: $grid-width;
+  margin: 0 auto;
+  
+  &:not(:last-child){
+    margin-bottom: $gutter-vertical;
+  }
+
+  @include clearFix;
+
+
+  [class^="col-"]{
+    float: left;
+  
+
+    &:not(:last-child){
+      margin-right: $gutter-horizontal;
+    }
+  }
+
+  .col-1-of-2{
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+  }
+
+  .col-1-of-3{
+    width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+  }
+  
+  .col-2-of-3{
+    width: calc((2*(100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+  }
+  
+  .col-2-of-4{
+    width: calc((2*(100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+  }
+
+  .col-1-of-4{
+    width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+  }
+
+  .col-3-of-4{
+    width: calc((3*(100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+  } 
+}
+
+///////////////////////////////////////КОНЕЦ///////////////////
+/* ФАКТИЧЕСКОЕ УДОБНОЕ ЦЕНТРИРОВАНИЕ */
+///////////////////////////////////////
+
+
+// + "ПЛЮС" В CSCC --> это значит после этого объекта будет стилизоваться класс справа
+	&__checkbox:checked + &__button &__icon {
+
+	}

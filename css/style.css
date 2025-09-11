@@ -39,6 +39,7 @@ body {
   border: solid black 2px;
   padding: 0.4rem;
   cursor: pointer;
+  outline: none;
 }
 .main-form input:focus + label, .main-form input:valid + label {
   transform: translateY(-6.2rem) translateX(1rem);
@@ -51,6 +52,15 @@ body {
   position: absolute;
   transform: translateY(-3rem) translateX(1rem);
   cursor: inherit;
+}
+.main-form .button-container {
+  display: flex;
+  gap: 1rem;
+}
+.main-form [class^=btn] {
+  border: solid black 2px;
+  padding: 1rem 1rem;
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=style.css.map */
