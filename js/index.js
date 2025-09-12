@@ -5,20 +5,35 @@ const inputLogin = document.getElementById('login')
 const inputPassw = document.getElementById('password')
 const inputUrl = document.getElementById('url')
 
+const savedSites = document.querySelector('.saved-sites')
+
 btnAdd.addEventListener('click', e => {
-	let inputLogVal = inputLogin.value
-	let inputPassVal = inputPassw.value
-	let inputUrlVal = inputUrl.value
+	let logVal = inputLogin.value
+	let passVal = inputPassw.value
+	let urlVal = inputUrl.value
 
-	e.preventDefault()
+	localStorage.userSaved = JSON.stringify({
+		login: `${logVal}\n`,
+		password: `${passVal}\n`,
+		url: `${urlVal}`,
+	})
 
-	alert(`${inputLogVal}, ${inputPassVal}, ${inputUrlVal}`)
+	let parseUserSaved = JSON.parse(localStorage.userSaved)
+	// alert(
+	// 	`Login: ${parseUserSaved.login} ,
+	// 	Password: ${parseUserSaved.password},
+	// 	Url: ${parseUserSaved.url}`
+	// )
 
-	const MenedgerFULL = { loginM: inputLogVal, passwM: inputPassVal }
-	localStorage.setItem(MenedgerFULL.loginM, JSON.stringify(MenedgerFULL.passwM))
+	// let keys = Object.keys(localStorage)
+	// for (let key of keys) {
+	// 	alert(` ${key}: ${localStorage.getItem(key)}`)
+	// }
 
-	// read it
-	const storedMenedger = localStorage.getItem(MenedgerFULL.loginM)
-	const parsedMenedger = JSON.parse(storedMenedger)
-	alert(parsedMenedger.loginM)
+	if (savedSites) {
+		savedSites.textContent = `Login: ${parseUserSaved.login} 
+		Password: ${parseUserSaved.password} 
+		URL: ${parseUserSaved.url}
+		`
+	}
 })

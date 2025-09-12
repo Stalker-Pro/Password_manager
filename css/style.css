@@ -62,5 +62,13 @@ body {
   padding: 1rem 1rem;
   font-size: 2rem;
 }
+.main-form .saved-sites {
+  margin: 3rem 0;
+  padding: 1.5rem 0.5rem;
+  font-size: 2rem;
+  border: solid darkorange 2px;
+  text-wrap: wrap;
+  width: 25rem;
+}
 
 /*# sourceMappingURL=style.css.map */
