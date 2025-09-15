@@ -7,33 +7,51 @@ const inputUrl = document.getElementById('url')
 
 const savedSites = document.querySelector('.saved-sites')
 
+// const obj = {
+// 	login: '123',
+// 	pass: 'pass',
+// }
+
+// // localStorage.setItem('web', JSON.stringify(obj))
+
+// const raw = localStorage.getItem('web')
+// const saveInfo = JSON.parse(raw)
+
+// saveInfo.login = 'Andrew_man'
+
+// console.log(saveInfo)
+
+btnGenerate.addEventListener('click', e => {})
+
 btnAdd.addEventListener('click', e => {
-	let logVal = inputLogin.value
-	let passVal = inputPassw.value
-	let urlVal = inputUrl.value
+	let logValue = inputLogin.value
+	let passValue = inputPassw.value
+	let urlValue = inputUrl.value
 
-	localStorage.userSaved = JSON.stringify({
-		login: `${logVal}\n`,
-		password: `${passVal}\n`,
-		url: `${urlVal}`,
-	})
-
-	let parseUserSaved = JSON.parse(localStorage.userSaved)
-	// alert(
-	// 	`Login: ${parseUserSaved.login} ,
-	// 	Password: ${parseUserSaved.password},
-	// 	Url: ${parseUserSaved.url}`
-	// )
-
-	// let keys = Object.keys(localStorage)
-	// for (let key of keys) {
-	// 	alert(` ${key}: ${localStorage.getItem(key)}`)
-	// }
-
-	if (savedSites) {
-		savedSites.textContent = `Login: ${parseUserSaved.login} 
-		Password: ${parseUserSaved.password} 
-		URL: ${parseUserSaved.url}
-		`
+	const complexSite = {
+		login: logValue,
+		password: passValue,
+		url: urlValue,
 	}
+
+	localStorage.setItem(urlValue, JSON.stringify(complexSite))
 })
+
+const sitesInDOM = document.createElement('div')
+sitesInDOM.textContent = 'Hello'
+sitesInDOM.style.border = 'solid red 2px'
+sitesInDOM.style.fontSize = '2rem'
+
+savedSites.appendChild(sitesInDOM)
+
+// let keys = Object.keys(localStorage)
+
+// if (keys.length) {
+// 	savedSites.textContent("There's nothing now. ")
+// }
+
+// window.addEventListener('storage', event => {
+// 	console.log(event)
+// })
+
+// window.onstorage = () =>{}
