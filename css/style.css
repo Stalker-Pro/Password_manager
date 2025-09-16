@@ -62,6 +62,12 @@ body {
   padding: 1rem 1rem;
   font-size: 2rem;
 }
+.main-form .box-for-sites {
+  border: solid red 2px;
+  font-size: 2rem;
+  padding: 1rem 0;
+  max-width: 10rem;
+}
 .main-form .saved-sites {
   margin: 3rem 0;
   padding: 1.5rem 0.5rem;

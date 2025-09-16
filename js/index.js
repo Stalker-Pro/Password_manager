@@ -29,20 +29,34 @@ btnAdd.addEventListener('click', e => {
 	let urlValue = inputUrl.value
 
 	const complexSite = {
-		login: logValue,
-		password: passValue,
 		url: urlValue,
+		login: logValue,
+		password: passValue
 	}
 
 	localStorage.setItem(urlValue, JSON.stringify(complexSite))
+
+	location.reload()
 })
 
-const sitesInDOM = document.createElement('div')
-sitesInDOM.textContent = 'Hello'
-sitesInDOM.style.border = 'solid red 2px'
-sitesInDOM.style.fontSize = '2rem'
+function displayLocalStorage() {
+	
+	const keys = Object.keys(localStorage);
 
-savedSites.appendChild(sitesInDOM)
+	keys.forEach(key =>{
+		const value = localStorage.getItem(key);
+		const sitesInDOM = document.createElement('div')
+		sitesInDOM.classList.add('box-for-sites')
+		sitesInDOM.innerText = ` ${value}`
+		savedSites.appendChild(sitesInDOM)
+	})
+	
+	
+
+}
+
+displayLocalStorage();
+
 
 // let keys = Object.keys(localStorage)
 
