@@ -9,14 +9,37 @@ const attentMesg = document.querySelector('.attention-message')
 
 const savedSites = document.querySelector('.saved-sites')
 
+// function generatePassword() {
+// 	btnGenerate.addEventListener('click', e => {
+// 		inputPassw.innerHTML = ''
+// 		var randomstring = Math.random().toString(36).slice(-8)
+// 		inputPassw.value = randomstring
+// 		console.log(inputPassw.value)
+// 	})
+// }
+
 function generatePassword() {
-	btnGenerate.addEventListener('click', e => {
-		inputPassw.innerHTML = ''
-		var randomstring = Math.random().toString(36).slice(-8)
-		inputPassw.value = randomstring
-		console.log(inputPassw.value)
-	})
+	return Math.random().toString(36).slice(-8)
 }
+
+btnGenerate.addEventListener('click', e =>{
+	e.preventDefault() 
+	inputPassw.value = '' 
+
+	let pass = generatePassword()
+	
+	let txt = pass.split('')
+	let interval = setInterval(function () {
+		if (!txt[0]) {
+			clearInterval(interval) // Останавливаем интервал, если все символы введены
+		} else {
+			inputPassw.value = inputPassw.value + txt.shift() // Добавляем следующий символ к полю ввода
+		}
+	}, 50) // Интервал между вводом символов
+
+})
+
+
 
 function addRecord() {
 	btnAdd.addEventListener('click', e => {

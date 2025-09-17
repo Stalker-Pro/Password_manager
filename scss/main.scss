@@ -55,6 +55,15 @@ body {
 		cursor: inherit;
 	}
 
+
+	select{
+		width: 100%;
+		font-size: 2rem;
+		background-color: $primary-orange-light;
+		// font-family: 'Courier New', Courier, monospace;
+		font-family: auto;
+	}
+
 	.button-container {
 		display: flex;
 		gap: 1rem;
