@@ -1,6 +1,7 @@
 /*    IMPORT SCSS     */
 
 @import 'variables';
+@import 'media';
 
 /*    IMPORT SCSS     */
 
@@ -26,14 +27,13 @@ body {
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
-	padding: 30rem 20rem;
+	padding: 5rem 20rem 0 20rem; // ДЛЯ МОБИЛЬНОГО 10% 10% 10% 10%;
 	border: solid $primary-orange 2px;
-	// display: flex;
-	// align-items: center;
 
 	input {
 		display: block;
 		font-size: 2rem;
+		width: 100%;
 		border: solid black 2px;
 		padding: 0.4rem;
 		cursor: pointer;
@@ -66,22 +66,42 @@ body {
 		font-size: 2rem;
 	}
 
-	.box-for-sites{
-		border: solid red 2px;
+	.box-for-sites {
+		border: solid $primary-orange 2px;
 		font-size: 2rem;
-		padding: 1rem 0;
-		max-width: 10rem;
+		padding: 1rem 0 1rem 0;
+		word-wrap: break-word;
 	}
 
+	.button-for-box {
+		&-copy {
+			margin-right: 1rem;
+			margin-bottom: 1rem;
+			cursor: pointer;
+		}
 
-	.saved-sites{
-		margin:3rem 0;
-		padding: 1.5rem .5rem;
+		&-delete {
+			cursor: pointer;
+		}
+	}
+
+	.attention-message {
 		font-size: 2rem;
-		border: solid $primary-orange 2px;
+		text-align: center;
+		color: rgb(255, 0, 0);
+		margin-bottom: 2rem;
+		text-decoration: solid rgb(179, 17, 17) underline;
+		text-underline-offset: 6px;
+	}
+
+	.saved-sites {
+		width: 100%;
+		margin: 3rem 0;
+		padding: 1.5rem 0.5rem;
+		font-size: 2rem;
+		// border: solid $primary-orange 2px;
 		text-wrap: wrap;
-		width: 25rem;
-		
+		text-align: center;
 	}
 }
 
