@@ -4,42 +4,65 @@ const btnGenerate = document.querySelector('.btn-generate')
 const inputUrl = document.getElementById('url')
 const inputLogin = document.getElementById('login')
 const inputPassw = document.getElementById('password')
+const selType = document.querySelector('select[name="passwords_type"]')
 
 const attentMesg = document.querySelector('.attention-message')
 
 const savedSites = document.querySelector('.saved-sites')
 
-// function generatePassword() {
-// 	btnGenerate.addEventListener('click', e => {
-// 		inputPassw.innerHTML = ''
-// 		var randomstring = Math.random().toString(36).slice(-8)
-// 		inputPassw.value = randomstring
-// 		console.log(inputPassw.value)
-// 	})
-// }
-
-function generatePassword() {
-	return Math.random().toString(36).slice(-8)
+// Для разных сложностей
+const CHAR_SETS = {
+	simple: 'abcdefghijklmnopqrstuvwxyz0123456789',
+	medium: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+	hard: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{};:,.<>?',
 }
 
-btnGenerate.addEventListener('click', e =>{
-	e.preventDefault() 
-	inputPassw.value = '' 
+const LENGTHS = {
+	simple: 8,
+	medium: 12,
+	hard: 16,
+}
 
-	let pass = generatePassword()
-	
-	let txt = pass.split('')
-	let interval = setInterval(function () {
-		if (!txt[0]) {
-			clearInterval(interval) // Останавливаем интервал, если все символы введены
+function generatePassword(charset, length) {
+	let res = ''
+	const n = charset.length
+	for (let i = 0; i < length; i++) {
+		res += charset[Math.floor(Math.random() * n)]
+	}
+	return res
+}
+
+//Плавная печать
+function typeIntoInput(input, text, intervalMs = 50, onComplete) {
+	input.value = ''
+	input.focus()
+	const chars = text.split('')
+	const timer = setInterval(() => {
+		if (!chars.length) {
+			clearInterval(timer)
+			if (onComplete) onComplete()
 		} else {
-			inputPassw.value = inputPassw.value + txt.shift() // Добавляем следующий символ к полю ввода
+			input.value = input.value + chars.shift()
+			// держим курсор в конце
+			input.setSelectionRange(input.value.length, input.value.length)
 		}
-	}, 50) // Интервал между вводом символов
+	}, intervalMs)
+	return timer
+}
 
+btnGenerate.addEventListener('click', e => {
+	e.preventDefault()
+	const type = selType.value || 'simple'
+	const charset = CHAR_SETS[type] || CHAR_SETS.simple
+	const length = LENGTHS[type] || LENGTHS.simple
+
+	const password = generatePassword(charset, length)
+
+	btnGenerate.disabled = true
+	typeIntoInput(inputPassw, password, 40, () => {
+		btnGenerate.disabled = false
+	})
 })
-
-
 
 function addRecord() {
 	btnAdd.addEventListener('click', e => {
@@ -75,10 +98,12 @@ function displayLocalStorage() {
 		const parsedValue = JSON.parse(value)
 
 		const buttonCopy = document.createElement('button')
+		buttonCopy.classList.add('button-for-box')
 		buttonCopy.classList.add('button-for-box-copy')
 		buttonCopy.innerText = `Copy`
 
 		const buttonDelete = document.createElement('button')
+		buttonDelete.classList.add('button-for-box')
 		buttonDelete.classList.add('button-for-box-delete')
 		buttonDelete.innerText = `Delete`
 
@@ -121,7 +146,8 @@ function displayLocalStorage() {
 displayLocalStorage()
 
 addRecord()
-generatePassword()
+
+// generatePassword()
 
 // window.addEventListener('storage', event => {
 // 	console.log(event)

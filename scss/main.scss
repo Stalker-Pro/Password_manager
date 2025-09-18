@@ -55,8 +55,7 @@ body {
 		cursor: inherit;
 	}
 
-
-	select{
+	select {
 		width: 100%;
 		font-size: 2rem;
 		background-color: $primary-orange-light;
@@ -72,7 +71,12 @@ body {
 	[class^='btn'] {
 		border: solid black 2px;
 		padding: 1rem 1rem;
-		font-size: 2rem;
+		font-size: 1.8rem;
+		transition: background 0.5s;
+
+		&:hover {
+			background-color: $primary-orange;
+		}
 	}
 
 	.box-for-sites {
@@ -80,17 +84,31 @@ body {
 		font-size: 2rem;
 		padding: 1rem 0 1rem 0;
 		word-wrap: break-word;
+		max-width: 30rem; // для больших ссылок
 	}
 
 	.button-for-box {
+		cursor: pointer;
+		padding: 1rem 2rem;
+		margin: 1rem;
+		font-family: auto;
+		font-size: 1.6rem;
+		margin-right: 1rem;
+		margin-bottom: 1rem;
+		transition: all 0.5s, color 0.2s;
+		border: none;
+
 		&-copy {
-			margin-right: 1rem;
-			margin-bottom: 1rem;
-			cursor: pointer;
+			&:hover {
+				background-color: $primary-orange-light;
+			}
 		}
 
 		&-delete {
-			cursor: pointer;
+			&:hover {
+				background-color: #ff4500;
+				color: white;
+			}
 		}
 	}
 
@@ -99,6 +117,7 @@ body {
 		text-align: center;
 		color: rgb(255, 0, 0);
 		margin-bottom: 2rem;
+		margin-top: 1rem;
 		text-decoration: solid rgb(179, 17, 17) underline;
 		text-underline-offset: 6px;
 	}

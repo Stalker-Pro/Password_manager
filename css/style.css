@@ -18,7 +18,7 @@
 /*  MARGIN  */
 @media (max-width: 992px) {
   .main-form {
-    padding: 10% 10% 10% 10%;
+    padding: 30% 15% 10% 15% !important;
   }
   /*Стили, на устройствах с максимальной ширеной экрана 992 пикселя и меньше */
 }
@@ -85,27 +85,43 @@ body {
 .main-form [class^=btn] {
   border: solid black 2px;
   padding: 1rem 1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  transition: background 0.5s;
+}
+.main-form [class^=btn]:hover {
+  background-color: darkorange;
 }
 .main-form .box-for-sites {
   border: solid darkorange 2px;
   font-size: 2rem;
   padding: 1rem 0 1rem 0;
   word-wrap: break-word;
+  max-width: 30rem;
 }
-.main-form .button-for-box-copy {
+.main-form .button-for-box {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  font-family: auto;
+  font-size: 1.6rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  cursor: pointer;
+  transition: all 0.5s, color 0.2s;
+  border: none;
 }
-.main-form .button-for-box-delete {
-  cursor: pointer;
+.main-form .button-for-box-copy:hover {
+  background-color: rgb(255, 187, 105);
+}
+.main-form .button-for-box-delete:hover {
+  background-color: #ff4500;
+  color: white;
 }
 .main-form .attention-message {
   font-size: 2rem;
   text-align: center;
   color: rgb(255, 0, 0);
   margin-bottom: 2rem;
+  margin-top: 1rem;
   text-decoration: solid rgb(179, 17, 17) underline;
   text-underline-offset: 6px;
 }
