@@ -2,9 +2,35 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 		<title>Document</title>
 		<link rel="stylesheet" href="/css/style.css" />
+
+		<!-- Manifest -->
+		<link rel="manifest" href="/manifest.json" />
+
+		<!-- Иконка для iOS -->
+		<link rel="apple-touch-icon" href="/images/key192.png" />
+
+		<!-- Цвет theme-color для разных платформ -->
+		<meta name="theme-color" content="#000000" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+
+		<!-- Мета-теги для PWA -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="ManagerPassword" />
+
+		<!-- остальные метатеги -->
+		<script defer src="/sw-register.js"></script>
+		<script src="/js/index.js" defer></script>
+		<script src="/app.js" defer></script>
+		<script src="/service-worker.js" defer></script>
+
 		<script src="/js/index.js" defer></script>
 	</head>
 	<body>
@@ -35,9 +61,30 @@
 			<div class="button-container">
 				<input class="btn-add" type="button" value="Add" />
 				<input class="btn-generate" type="button" value="Generate password" />
+				<!--  -->
+				<!-- <input class="btn-cache-test" type="button" value="Test Cache" />
+				<input class="btn-cache-clear" type="button" value="Clear Cache" /> -->
 			</div>
 
 			<div class="saved-sites"></div>
+			<!--  -->
+			<div
+				class="cache-result"
+				style="
+					margin-top: 10px;
+					padding: 10px;
+					background: #f0f0f0;
+					border-radius: 5px;
+					display: none;
+					font-size: 2rem;
+				"
+			>
+				<h4>Результат проверки кэша:</h4>
+				<p class="cache-info"></p>
+			</div>
+			<button id="install-button" style="display: none">
+				Установить приложение
+			</button>
 		</form>
 	</body>
 </html>
