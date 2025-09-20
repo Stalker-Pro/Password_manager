@@ -5,6 +5,7 @@ if ('serviceWorker' in navigator) {
 			.register('/service-worker.js')
 			.then(registration => {
 				console.log('SW registered: ', registration)
+				checkPWAReadiness()
 			})
 			.catch(registrationError => {
 				console.log('SW registration failed: ', registrationError)
@@ -16,34 +17,108 @@ if ('serviceWorker' in navigator) {
 let deferredPrompt
 const installBtn = document.getElementById('install-button')
 
-if (installBtn) {
-	window.addEventListener('beforeinstallprompt', e => {
-		e.preventDefault()
-		deferredPrompt = e
-		installBtn.style.display = 'block'
+// Функция проверки готовности PWA
+function checkPWAReadiness() {
+	console.log('=== PWA READINESS CHECK ===')
 
-		installBtn.addEventListener('click', () => {
-			installBtn.style.display = 'none'
-			if (deferredPrompt) {
-				deferredPrompt.prompt()
-				deferredPrompt.userChoice.then(choiceResult => {
-					if (choiceResult.outcome === 'accepted') {
-						console.log('Пользователь установил приложение')
-						showCacheMessage('Приложение установлено!')
-					} else {
-						console.log('Пользователь отказался от установки')
-					}
-					deferredPrompt = null
-				})
-			}
-		})
-	})
+	// Проверяем, уже установлено ли
+	const isAlreadyInstalled = window.matchMedia(
+		'(display-mode: standalone)'
+	).matches
+	console.log('Already installed:', isAlreadyInstalled)
 
-	window.addEventListener('appinstalled', () => {
-		console.log('Приложение успешно установлено')
+	if (isAlreadyInstalled && installBtn) {
 		installBtn.style.display = 'none'
-	})
+		return
+	}
+
+	// Показываем кнопку если не установлено
+	if (installBtn && !isAlreadyInstalled) {
+		installBtn.style.display = 'block'
+		setupInstallButton()
+	}
 }
+
+// Настройка кнопки установки
+function setupInstallButton() {
+	if (!installBtn) return
+
+	installBtn.onclick = function () {
+		if (deferredPrompt) {
+			// Пытаемся установить через prompt
+			deferredPrompt.prompt()
+			deferredPrompt.userChoice.then(choiceResult => {
+				if (choiceResult.outcome === 'accepted') {
+					console.log('User accepted install')
+					showCacheMessage('Приложение установлено!')
+					installBtn.style.display = 'none'
+				} else {
+					console.log('User dismissed install')
+					showManualInstallInstructions()
+				}
+				deferredPrompt = null
+			})
+		} else {
+			// Показываем инструкции для ручной установки
+			showManualInstallInstructions()
+		}
+	}
+}
+
+// Инструкции для ручной установки
+function showManualInstallInstructions() {
+	const message = `
+        💡 Как установить приложение:
+        
+        1. Откройте меню браузера (⋮)
+        2. Нажмите "Добавить на главный экран"
+        3. Подтвердите установку
+        
+        или
+        
+        1. Дождитесь автоматического предложения установить приложение
+    `
+
+	alert(message)
+	showCacheMessage('Используйте меню браузера для установки')
+}
+
+// Событие beforeinstallprompt
+window.addEventListener('beforeinstallprompt', e => {
+	console.log('beforeinstallprompt event fired')
+	e.preventDefault()
+	deferredPrompt = e
+
+	// Показываем кнопку
+	if (installBtn) {
+		installBtn.style.display = 'block'
+		installBtn.textContent = '📲 Установить приложение'
+		installBtn.style.backgroundColor = '#4CAF50'
+		installBtn.style.color = 'white'
+		installBtn.style.padding = '12px 20px'
+		installBtn.style.border = 'none'
+		installBtn.style.borderRadius = '8px'
+		installBtn.style.cursor = 'pointer'
+		installBtn.style.fontSize = '16px'
+	}
+})
+
+// Событие после установки
+window.addEventListener('appinstalled', () => {
+	console.log('App installed successfully')
+	if (installBtn) {
+		installBtn.style.display = 'none'
+	}
+	deferredPrompt = null
+})
+
+// Проверяем при загрузке
+window.addEventListener('load', () => {
+	checkPWAReadiness()
+
+	// Проверяем каждые 5 секунд
+	setInterval(checkPWAReadiness, 5000)
+})
 
 // Функция для отображения сообщений о кэше
 function showCacheMessage(message) {
@@ -126,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		cacheTestBtn.addEventListener('click', checkCache)
 	}
 
-	// Дополнительная кнопка очистки кэша (опционально)
+	// Дополнительная кнопка очистки кэша
 	const clearCacheBtn = document.querySelector('.btn-cache-clear')
 	if (clearCacheBtn) {
 		clearCacheBtn.addEventListener('click', clearCache)
