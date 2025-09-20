@@ -19,8 +19,12 @@
 @media (max-width: 992px) {
   .main-form {
     padding: 10rem 15% 10% 15% !important;
-    width: 90%;
     max-height: 85vh;
+  }
+  .button-container {
+    display: block;
+    gap: 1rem;
+    word-wrap: wrap;
   }
   /*Стили, на устройствах с максимальной ширеной экрана 992 пикселя и меньше */
 }
@@ -53,6 +57,7 @@ body {
   padding: 5rem 20rem 0 20rem;
   border: solid darkorange 2px;
   max-height: 90vh;
+  max-width: 90vh;
   overflow-y: auto;
 }
 .main-form input {
