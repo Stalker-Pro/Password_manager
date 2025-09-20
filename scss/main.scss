@@ -1,7 +1,7 @@
 /*    IMPORT SCSS     */
 
-@import 'variables';
-@import 'media';
+@use 'variables';
+@use 'media';
 
 /*    IMPORT SCSS     */
 
@@ -19,7 +19,7 @@ html {
 }
 
 body {
-	// height: 100vh;
+	height: 100vh;
 }
 
 .main-form {
@@ -27,8 +27,8 @@ body {
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
-	padding: 5rem 20rem 0 20rem; // ДЛЯ МОБИЛЬНОГО 10% 10% 10% 10%;
-	border: solid $primary-orange 2px;
+	padding: 5rem 20rem 0 20rem;
+	border: solid variables.$primary-orange 2px;
 	max-height: 90vh;
 	overflow-y: auto;
 
@@ -44,7 +44,7 @@ body {
 		&:focus + label,
 		&:valid + label {
 			transform: translateY(-6.2rem) translateX(1rem);
-			color: $primary-orange;
+			color: variables.$primary-orange;
 		}
 	}
 
@@ -60,7 +60,7 @@ body {
 	select {
 		width: 100%;
 		font-size: 2rem;
-		background-color: $primary-orange-light;
+		background-color: variables.$primary-orange-light;
 		// font-family: 'Courier New', Courier, monospace;
 		font-family: auto;
 	}
@@ -77,12 +77,12 @@ body {
 		transition: background 0.5s;
 
 		&:hover {
-			background-color: $primary-orange;
+			background-color: variables.$primary-orange;
 		}
 	}
 
 	.box-for-sites {
-		border: solid $primary-orange 2px;
+		border: solid variables.$primary-orange 2px;
 		font-size: 2rem;
 		padding: 1rem 0 1rem 0;
 		word-wrap: break-word;
@@ -102,7 +102,7 @@ body {
 
 		&-copy {
 			&:hover {
-				background-color: $primary-orange-light;
+				background-color: variables.$primary-orange-light;
 			}
 		}
 
@@ -132,6 +132,18 @@ body {
 		// border: solid $primary-orange 2px;
 		text-wrap: wrap;
 		text-align: center;
+	}
+
+	.site-container {
+		display: inline-block;
+		justify-content: center;
+		align-items: center;
+		word-wrap: wrap;
+		width: 25rem;
+	}
+
+	#install-button {
+		margin: auto;
 	}
 }
 

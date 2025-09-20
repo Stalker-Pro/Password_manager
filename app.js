@@ -21,7 +21,7 @@ const installBtn = document.getElementById('install-button')
 function checkPWAReadiness() {
 	console.log('=== PWA READINESS CHECK ===')
 
-	// Проверяем, уже установлено ли
+	// Проверка уже установлено ли
 	const isAlreadyInstalled = window.matchMedia(
 		'(display-mode: standalone)'
 	).matches
@@ -193,7 +193,6 @@ function clearCache() {
 		})
 }
 
-// Добавьте обработчики кнопок после загрузки DOM
 document.addEventListener('DOMContentLoaded', function () {
 	// Кнопка проверки кэша
 	const cacheTestBtn = document.querySelector('.btn-cache-test')
@@ -208,8 +207,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 })
 
-// Также можно добавить автоматическую проверку при загрузке
 window.addEventListener('load', function () {
-	// Автоматически проверить кэш через 2 секунды после загрузки
 	setTimeout(checkCache, 2000)
 })

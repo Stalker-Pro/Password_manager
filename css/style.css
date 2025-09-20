@@ -19,15 +19,10 @@
 @media (max-width: 992px) {
   .main-form {
     padding: 10rem 15% 10% 15% !important;
-  }
-  /*Стили, на устройствах с максимальной ширеной экрана 992 пикселя и меньше */
-}
-@media (max-width: 768px) {
-  .main-form {
-    padding: 3rem 2rem 0 2rem;
     width: 90%;
     max-height: 85vh;
   }
+  /*Стили, на устройствах с максимальной ширеной экрана 992 пикселя и меньше */
 }
 @media (max-width: 500px) {
   /*Стили, на устройствах с максимальной ширеной экрана 500 пикселей и меньше */
@@ -44,6 +39,10 @@
 html {
   font-size: 62.5%; /* 1 rem = 10 px */
   box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
 }
 
 .main-form {
@@ -137,6 +136,16 @@ html {
   font-size: 2rem;
   text-wrap: wrap;
   text-align: center;
+}
+.main-form .site-container {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  word-wrap: wrap;
+  width: 25rem;
+}
+.main-form #install-button {
+  margin: auto;
 }
 
 /*# sourceMappingURL=style.css.map */
