@@ -19,7 +19,7 @@ html {
 }
 
 body {
-	height: 100vh;
+	// height: 100vh;
 }
 
 .main-form {
@@ -29,6 +29,8 @@ body {
 	translate: -50% -50%;
 	padding: 5rem 20rem 0 20rem; // ДЛЯ МОБИЛЬНОГО 10% 10% 10% 10%;
 	border: solid $primary-orange 2px;
+	max-height: 90vh;
+	overflow-y: auto;
 
 	input {
 		display: block;
