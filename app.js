@@ -13,7 +13,6 @@ if ('serviceWorker' in navigator) {
 	})
 }
 
-// Обработка установки приложения
 let deferredPrompt
 const installBtn = document.getElementById('install-button')
 
@@ -21,7 +20,6 @@ const installBtn = document.getElementById('install-button')
 function checkPWAReadiness() {
 	console.log('=== PWA READINESS CHECK ===')
 
-	// Проверка уже установлено ли
 	const isAlreadyInstalled = window.matchMedia(
 		'(display-mode: standalone)'
 	).matches
@@ -116,7 +114,6 @@ window.addEventListener('appinstalled', () => {
 window.addEventListener('load', () => {
 	checkPWAReadiness()
 
-	// Проверяем каждые 5 секунд
 	setInterval(checkPWAReadiness, 5000)
 })
 
@@ -129,7 +126,6 @@ function showCacheMessage(message) {
 		cacheInfo.textContent = message
 		cacheResult.style.display = 'block'
 
-		// Автоматически скрыть через 5 секунд
 		setTimeout(() => {
 			cacheResult.style.display = 'none'
 		}, 5000)
@@ -146,7 +142,7 @@ function checkCache() {
 	showCacheMessage('Проверяем кэш...')
 
 	caches
-		.open('main-app-cache-v3') // ИЗМЕНИТЕ НА v3 чтобы совпадало с service-worker!
+		.open('main-app-cache-v3')
 		.then(cache => {
 			return cache.keys()
 		})
