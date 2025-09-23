@@ -117,20 +117,20 @@ window.addEventListener('load', () => {
 	setInterval(checkPWAReadiness, 5000)
 })
 
-// Функция для отображения сообщений о кэше
-function showCacheMessage(message) {
-	const cacheResult = document.querySelector('.cache-result')
-	const cacheInfo = document.querySelector('.cache-info')
+// // Функция для отображения сообщений о кэше
+// function showCacheMessage(message) {
+// 	const cacheResult = document.querySelector('.cache-result')
+// 	const cacheInfo = document.querySelector('.cache-info')
 
-	if (cacheResult && cacheInfo) {
-		cacheInfo.textContent = message
-		cacheResult.style.display = 'block'
+// 	if (cacheResult && cacheInfo) {
+// 		cacheInfo.textContent = message
+// 		cacheResult.style.display = 'block'
 
-		setTimeout(() => {
-			cacheResult.style.display = 'none'
-		}, 5000)
-	}
-}
+// 		setTimeout(() => {
+// 			cacheResult.style.display = 'none'
+// 		}, 5000)
+// 	}
+// }
 
 // Проверка кэша
 function checkCache() {
